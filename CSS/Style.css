@@ -1,0 +1,231 @@
+/*----------------- CSS générale -----------------*/
+body {
+    background-image: url("../Image/fond_body.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+}
+
+/* définition les polices*/
+@font-face {
+    font-family: obelix_pro;
+    src: url(../Fonts/obelix-pro/ObelixProB-cyr.ttf);
+}
+
+@font-face {
+    font-family: olympus_bold;
+    src: url(../Fonts/olympus/OLYMRG__.TTF);
+}
+
+@font-face {
+    font-family: caligo;
+    src: url(../Fonts/caligo/font_Caligo1.0.ttf);
+}
+
+h1,
+h2,
+h3,
+input[type="submit"] {
+    font-family: obelix_pro, sans-serif, Arial;
+    color: #00b4a3;
+}
+a {
+    font-family: olympus_bold, sans-serif, Arial;
+    font-size: 25px;
+    color: #00b4a3;
+    text-decoration: none;
+}
+p,
+label,
+legend {
+    font-family: caligo, sans-serif, Arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Pour avoir des bordures stylisées */
+.bordure {
+    border: 30px solid;
+    border-image: url(../Image/Bordure/Border_grec_1.png) 30 round;
+}
+
+/* on utilise ces bordures pour les images :  */
+.bordure_img {
+    border: 30px solid;
+    border-image: url(../Image/Bordure/Border_grec_1.png) 50 round;
+}
+
+/* on utilise ces bordures quand l'utilisateur peut intéragir  */
+.bordure_interaction {
+    border: 30px solid;
+    border-image: url(../Image/Bordure/Border_grec_1.png) 40 round;
+}
+
+.bordure_interaction:hover {
+    background-color: black;
+    box-shadow: 0 0 30px black;
+    border: 30px solid;
+    border-image: url(../Image/Bordure/border_grec_hover.png) 40 round;
+}
+
+.bordure_interaction:hover h3,
+.bordure_interaction:hover {
+    color: #00b4a3;
+}
+
+
+/*----------------- Header -----------------*/
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1d4ae;
+    align-items: center;
+    margin-bottom: 5%;
+    border-bottom: 5px solid black;
+    border-top-style: none;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header nav ul li {
+    margin: 30px;
+}
+
+header nav ul a {
+    font-family: obelix_pro, sans-serif, Arial;
+    color: black;
+    font-size: 12px;
+}
+
+.logo {
+    width: 300px;
+    height: 100px;
+}
+
+/*----------------- Block central -----------------*/
+#block_central {
+    width: 55%;
+    background-color: #f1d4ae;
+    margin: 10% auto 0 auto;
+    padding: 2%;
+    opacity: 0.90;
+
+    /* Définition du flex  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Redimention les images, la vidéo et la carte google du block central  */
+#block_central img,
+#block_central video,
+#block_central iframe {
+    width: 80%;
+    height: auto;
+}
+
+/* bouton pour retourner en haut de la page  */
+#retour_top {
+    width: 20%;
+    height: 5%;
+    margin-top: 30px;
+    font-family: obelix_pro, sans-serif, Arial;
+    color: black;
+    font-size: 1em;
+}
+
+#retour_top:hover img {
+    content: url("../Image/fleche__retour_top_hover.png");
+}
+
+#retour_top:hover {
+    color: #00b4a3;
+}
+/*----------------- Images des personnages -----------------*/
+.img_perso {
+    width: 350px;
+    height: 350px;
+    position: fixed;
+    top: 40%;
+    left: -60px;
+    z-index: -5;
+}
+/*----------------- Block retour page acceuil----------------- */
+.retour_index {
+    width: 12%;
+    background-color: #f1d4ae;
+    font-family: obelix_pro, sans-serif, Arial;
+    color: black;
+    font-size: 1em;
+    /* Fait en sort que le block reste en bas à droite :  */
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    /* Définition du flex  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.retour_index img {
+    width: 100%;
+}
+
+
+/*----------------- Page Caractéristique et Page Avis-----------------*/
+
+/* Applique un flex en ligne  */
+.comparatif {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 10px;
+}
+
+.comparatif>div {
+    width: 50%;
+    height: auto;
+}
+
+/*----------------- Page Position -----------------*/
+.carte {
+    width: 80%;
+    height: 500px;
+    background-image: url("../Image/parc_astérix_carte.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+
+#block_central .carte img {
+    left: -28%;
+    bottom: -20px;
+    position: relative;
+    width: 20%;
+}
+
+/*----------------- Page Formulaire -----------------*/
+
+
+/* Pour pas que certaines parties du formulaires apparaisse dès le débuts */
+#ancienne_version,
+#les_deux,
+#nouvelle_version {
+    display: none;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    color: black;
+    background-color: #f1d4ae;
+}
