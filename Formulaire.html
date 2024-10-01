@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <!-- Encodage utf-8 -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <!-- Auteur du site -->
+    <meta name="author" content="Delhaye Martin" />
+    <!-- Description -->
+    <meta name="description" content="Site de présentaion de l'attraction Tonnerre 2 Zeus" />
+    <!-- Mots clé -->
+    <meta name="keywords" content="tonerre, ZEUS, manège, roller coaster, Parc, Astérix " />
+    <!-- link favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="Image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="Image/favicon_io/site.webmanifest">
+    <!-- Link CSS -->
+    <link href="CSS/Style.css" rel="stylesheet" type="text/css">
+    <!-- Titre -->
+    <title>Formulaire</title>
+    <!-- Lignes de script pour faire apparîttre certaines questions en fonction de la version de l'attraction tester -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sélectionne les cases à cocher et les divs associées
+            var checkboxes = document.querySelectorAll('#Ancienne, #Nouvelle');
+            var ancienneDiv = document.getElementById('ancienne_version');  // récupère les élément grâce à leur ID 
+            var nouvelleDiv = document.getElementById('nouvelle_version');
+            var lesDeuxDiv = document.getElementById('les_deux');
+            var Required_anc = document.getElementById('anc_note');
+            var Required_nvl = document.getElementById('nvl_note');
+
+            // Ajoute un écouteur d'événements à chaque case à cocher, et à chaque fois qu'une case est changé on fais appelle a la fonction updateVisibility_required
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', updateVisibility_required);
+            });
+
+            // Définit la fonction pour mettre à jour la visibilité et le required
+            function updateVisibility_required() {
+                // Récupère l'état des cases à cocher "Ancienne" et "Nouvelle"
+                var ancienneChecked = document.getElementById('Ancienne').checked;
+                var nouvelleChecked = document.getElementById('Nouvelle').checked;
+
+                // Affiche (display:"block") ou masque (display:"none") les divs en fonction de l'état des cases à cocher
+                if (ancienneChecked) {
+                    ancienneDiv.style.display = 'block';        //Si Ancienne est coché, ça affiche la div correspondante 
+                    Required_anc.required = true;               //Et on est obliger de rentrer une note
+                } 
+                else {
+                    ancienneDiv.style.display = 'none';
+                    Required_anc.required = false;
+                }
+                if (nouvelleChecked) {
+                    nouvelleDiv.style.display = 'block';        //Si Nouvelle est coché, ça affiche la div correspondante 
+                    Required_nvl.required = true;               //Et on est obliger de rentrer une note
+                } 
+                else {
+                    nouvelleDiv.style.display = 'none';
+                    Required_nvl.required = false;
+                }
+                if(nouvelleChecked && ancienneChecked){
+                    lesDeuxDiv.style.display = 'block';         //Si les 2 sont cochés, ça affiche la div correspondante
+                }
+                else {
+                    lesDeuxDiv.style.display = 'none';
+                }
+                
+            }
+        });
+    </script>
+    <!-- Fin des lignes de script -->
+</head>
+
+<body>
+    <header class="bordure">
+        <a href="index.html" title="retour acceuil">
+            <img class="logo" src="Image/nv_logo_T2Z.png" alt="logo Tonnerre de Zeus" title="logo Tonnerre de Zeus" />
+        </a>
+        <nav>
+            <ul>
+                <li>
+                    <a class="bordure_interaction" href="histoire.html"> Histoire </a>
+                </li>
+                <li>
+                    <a class="bordure_interaction" href="Caracteristique.html"> Caracteristiques</a>
+                </li>
+                <li>
+                    <a class="bordure_interaction" href="position.html">Position</a>
+                </li>
+                <li>
+                    <a class="bordure_interaction" href="Formulaire.html">Formulaire</a>
+                </li>
+                <li>
+                    <a class="bordure_interaction" href="PHP/recuperation_donnees_formulaire_T2Z.php">Avis</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <img class="img_perso" src="Image/panoramix.png" alt="Paronamix" title="Paronamix" />
+    <div id="block_central" class="bordure">
+
+        <h1> Votre avis sur l'attraction </h1>
+        <p> Ce formulaire va nous permette de connaître votre avis sur l'attraction. </p>
+
+        <!-- Début du formulaire  -->
+        <form action="PHP/recuperation_donnees_formulaire_T2Z.php" method="POST">
+            <p>
+                <label for="nom">Nom :</label>
+                <input type="text" name="nom" placeholder="Votre Nom" required>
+            </p>
+            <p>
+                <label for="prénom">Prénom :</label>
+                <input type="text" name="prenom" placeholder="Votre Prénom" required>
+            </p>
+
+            <fieldset>
+                <legend><label for="version_tester"> Version que vous avez tester</label></legend>
+                    <input type="checkbox" id="Ancienne" name="Ancienne" value="Ancienne">
+                    <label for="Ancienne">Ancienne version</label>
+                    <input type="checkbox" id="Nouvelle" name="Nouvelle" value="Nouvelle">
+                    <label for="Nouvelle">Nouvelle version</label>
+            </fieldset>
+
+            <!-- Bloc formulaire de l'ancienne version  -->
+            <div id="ancienne_version">
+                <fieldset>
+                    <legend>
+                        <h3>Votre avis sur l'ancienne version : </h3>
+                    </legend>
+                    <p>
+                        <label for="anc_note">Note (entre 0 et 10) :</label>
+                        <input type="number" id="anc_note" name="anc_note" min="0" max="10" step="0.5">
+                    </p>
+                    
+                    <fieldset>
+                        <legend><label for="anc_resenti">Vous êtes-vous senti mal après l'attraction ?</label></legend>
+                        <p>
+                            <span>
+                                <input type="radio" name="anc_resenti" value="Oui, beaucoup"> Oui, beaucoup
+                            </span>
+                            <span>
+                                <input type="radio" name="anc_resenti" value="Un peu">Un peu
+                            </span>
+                            <span>
+                                <input type="radio" name="anc_resenti" value="Non, pas tu tout">Non, pas tu tout
+                            </span>
+                            <span>
+                                <input type="radio" name="anc_resenti" value="Ne sais pas" checked>Ne sais pas
+                            </span>
+                        </p>
+                    </fieldset>
+
+                    <p>
+                        <label for="anc_avis">Votre avis sur l'ancienne version :</label>
+                        <textarea name="anc_avis" rows="2" cols="30"
+                            placeholder="Votre avis..."></textarea>
+                    </p>
+
+
+                </fieldset>
+            </div>
+
+            <!-- Bloc formulaire de la nouvelle version  -->
+            <div id="nouvelle_version">
+                <fieldset>
+                    <legend>
+                        <h3>Votre avis sur la nouvelle version : </h3>
+                    </legend>
+                    <p>
+                        <label for="nvl_note">Note (entre 0 et 10) :</label>
+                        <input type="number" id="nvl_note" name="nvl_note" min="0" max="10" step="0.5">
+                    </p>
+                    <fieldset>
+                        <legend><label for="nvl_resenti">Vous êtes-vous senti mal après l'attraction ?</label></legend>
+                        <p>
+                            <span>
+                                <input type="radio" name="nvl_resenti" value="Oui, beaucoup" > Oui, beaucoup
+                            </span>
+                            <span>
+                                <input type="radio" name="nvl_resenti" value="Un peu">Un peu
+                            </span>
+                            <span>
+                                <input type="radio" name="nvl_resenti" value="Non, pas tu tout" >Non, pas tu tout
+                            </span>
+                            <span>
+                                <input type="radio" name="nvl_resenti" value="Ne sais pas" checked>Ne sais pas
+                            </span>
+                        </p>
+                    </fieldset>
+                    <p>
+                        <label for="nvl_avis">Votre avis sur la nouvelle version :</label>
+                        <textarea name="nvl_avis" rows="2" cols="30"
+                            placeholder="Votre avis..."></textarea>
+                    </p>
+                    <p>
+                        <label for="nvl_recommendation">Recommanderiez-vous cette attraction à vos proches :</label>
+                        <select name="nvl_recommendation">
+                            <option value="Non">Non, ils n'aimeront sûrement pas</option>
+                            <option value="Oui" selected>Oui, ils aimeraient sûrement</option>
+                        </select>
+                    </p>
+                </fieldset>
+            </div>
+            <!-- Bloc formulaire des deux versions  -->
+            <div id="les_deux">
+                <fieldset>
+                    <legend>
+                        <h3>Votre avis sur les deux :</h3>
+                    </legend>
+                    <p>
+                        <label for="preferer">Quelle est votre version favorite :</label>
+                        <select name="preferer" id="preferer">
+                            <option value="Ancienne">L'ancienne</option>
+                            <option value="Nouvelle" selected>La nouvelle</option>
+                        </select>
+                    </p>
+                </fieldset>
+            </div>
+            <input class="bordure_interaction" type="submit" value="ENVOYER">
+        </form>
+        <!-- Permet de remonter la page -->
+        <a id="retour_top" class="bordure_interaction" href="#" title="retour haut de la page">
+            <img src="Image/fleche_retour_top.png" alt="flèche qui pointe vers le haut" title="retour haut de la page">
+            Haut de la page
+        </a>
+    </div>
+     <!-- bloque retour index  -->
+    <a class="retour_index bordure_interaction" href="index.html" title="Retour page d'acceuil">
+        <img src="Image/retour_index_unscreen.gif" alt="bâtiment Grec en 3D" title="Retour acceuil" />
+        Acceuil
+    </a>
+
+
+
+
+</body>
